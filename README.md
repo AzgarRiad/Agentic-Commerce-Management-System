@@ -1,6 +1,6 @@
 # Agentic Commerce Management System (ACMS)
 
-A small hobby project: a store admin dashboard plus an AI chat assistant that
+A store admin dashboard plus an AI chat assistant that
 can look up products and place orders. Built with FastAPI, SQLAlchemy and
 plain HTML/CSS/JavaScript.
 
