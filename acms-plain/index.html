@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACMS Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Mobile top bar (hidden on desktop) -->
+  <header class="topbar">
+    <button class="icon-btn" data-action="toggle-menu" aria-label="Open menu">☰</button>
+    <b>Admin Panel</b>
+  </header>
+  <div class="backdrop" data-action="toggle-menu"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">Admin Panel</div>
+    <nav>
+      <a href="#/dashboard" data-page="dashboard">
+        <svg viewBox="0 0 24 24"><path d="M3 3h8v10H3zM13 3h8v6h-8zM13 11h8v10h-8zM3 15h8v6H3z"/></svg>Dashboard</a>
+      <a href="#/products" data-page="products">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-1 4H5V4h14zM6 20V8h12v12zm3-9h6v2H9z"/></svg>Products</a>
+      <a href="#/orders" data-page="orders">
+        <svg viewBox="0 0 24 24"><path d="M5 2h12l2 2v8.3A5 5 0 0 0 12.1 20H5zm3 4v2h8V6zm0 4v2h8v-2zm0 4v2h4v-2zm9 1a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm-.8 6 3.3-3.3-.9-.9-2.4 2.4-1-1-.9.9z"/></svg>Orders</a>
+      <span class="disabled" title="Coming later">
+        <svg viewBox="0 0 24 24"><path d="M19.4 13a7.7 7.7 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.6a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.7 7.7 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1c.5.4 1.1.7 1.7 1l.4 2.6h4l.4-2.6c.6-.3 1.2-.6 1.7-1l2.5 1 2-3.5zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>Settings</span>
+    </nav>
+    <div class="side-bottom">
+      <span class="disabled" title="Coming later">❓ Help</span>
+      <span class="disabled" title="Coming later">💬 Feedback</span>
+    </div>
+  </aside>
+
+  <!-- Page content is drawn here by scripts.js -->
+  <main id="app"></main>
+
+  <!-- Dialog (add/edit product, add order, order details) -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="dialog" role="dialog" aria-modal="true" id="dialog"></div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
