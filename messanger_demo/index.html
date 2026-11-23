@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>ACMS Messenger Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell" id="appShell">
+    <nav class="nav-rail" aria-label="Main navigation">
+      <button class="brand-mark" type="button" aria-label="ACMS home" title="ACMS">
+        <span class="brand-bolt">ϟ</span>
+      </button>
+      <div class="nav-rail-spacer"></div>
+      <button class="rail-button active" type="button" aria-label="Chats" title="Chats">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.3c-5.1 0-9.2 3.5-9.2 7.8 0 2.1 1 4 2.7 5.4l-.8 3.4 3.8-1.7c1.1.4 2.3.7 3.5.7 5.1 0 9.2-3.5 9.2-7.8s-4.1-7.8-9.2-7.8Z"/><path class="icon-cutout" d="M7.5 11.2h.1m4.3 0h.1m4.3 0h.1"/></svg>
+      </button>
+      <button class="rail-button" type="button" aria-label="Marketplace demo" title="Marketplace demo" data-toast="Marketplace is outside this chat demo.">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h16l-1.2-5H5.2L4 9.5Z"/><path d="M5.1 9.5v9.8h13.8V9.5M9 19.3v-6h6v6"/><path d="M4.2 9.5c0 1.5 2.7 1.7 3.1 0 .4 1.7 3.3 1.7 3.7 0 .4 1.7 3.3 1.7 3.7 0 .4 1.7 3.1 1.5 3.1 0"/></svg>
+      </button>
+      <button class="rail-button" type="button" aria-label="People demo" title="People demo" data-toast="People is outside this chat demo.">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19.5c.4-3.6 2.5-5.5 6.2-5.5s5.8 1.9 6.2 5.5M16 5.4a3 3 0 0 1 0 5.8m1 2.9c2.5.6 3.8 2.3 4.2 5.4"/></svg>
+      </button>
+      <div class="nav-rail-spacer"></div>
+      <button class="rail-button bottom-rail-button" type="button" aria-label="Settings" title="Settings" data-toast="Settings are not connected in this mockup.">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="m19.4 13.5 1.1.8-1.8 3.1-1.3-.6a7.8 7.8 0 0 1-2 .9l-.2 1.5H8.8l-.2-1.5a7.8 7.8 0 0 1-2-.9l-1.3.6-1.8-3.1 1.1-.8a7.3 7.3 0 0 1 0-2.3l-1.1-.8 1.8-3.1 1.3.6a7.8 7.8 0 0 1 2-.9l.2-1.5h6.4l.2 1.5a7.8 7.8 0 0 1 2 .9l1.3-.6 1.8 3.1-1.1.8a7.3 7.3 0 0 1 0 2.3Z"/></svg>
+      </button>
+      <div class="my-avatar" aria-label="Your profile">R</div>
+    </nav>
+
+    <aside class="chat-sidebar" id="chatSidebar" aria-label="Chats list">
+      <div class="sidebar-topline">
+        <h1>Chats</h1>
+        <button class="round-action" id="newChatButton" type="button" title="New chat" aria-label="New chat">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
+      <label class="search-box">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.4 4.4"/></svg>
+        <input id="searchInput" type="search" placeholder="Search Messenger" autocomplete="off" aria-label="Search chats">
+      </label>
+      <div class="filter-tabs" aria-label="Chat filters">
+        <button class="filter-tab selected" type="button" data-filter="all">All</button>
+        <button class="filter-tab" type="button" data-filter="unread">Unread</button>
+        <button class="filter-tab" type="button" data-filter="groups">Groups</button>
+      </div>
+      <div class="chat-list" id="chatList" role="listbox" aria-label="Recent conversations"></div>
+      <div class="sidebar-footer">
+        <span class="connection-dot unknown" id="connectionDot"></span>
+        <span id="connectionLabel">Ready to connect</span>
+        <button class="text-icon-button" id="clearChatButton" type="button" title="Clear current conversation">Clear</button>
+      </div>
+    </aside>
+
+    <section class="conversation" aria-label="Conversation">
+      <header class="conversation-header">
+        <button class="mobile-back" id="mobileBackButton" type="button" aria-label="Back to chats">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+        </button>
+        <div class="header-person">
+          <div class="avatar avatar-store" id="headerAvatar"><span>AC</span><i class="online-dot"></i></div>
+          <div class="header-person-copy">
+            <h2 id="headerName">ACMS Store</h2>
+            <p id="headerStatus">AI assistant · Active now</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="header-action" type="button" aria-label="Voice call" title="Voice call (demo)" data-toast="Voice calls are not part of this text-chat demo.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.3 3.6 4.7 4.8c-.9.4-1.3 1.4-1.1 2.4 1.4 6.3 6.3 11.2 12.6 12.6 1 .2 2-.2 2.4-1.1l1.2-2.6-4.3-2.2-1.5 1.8a13.6 13.6 0 0 1-5.6-5.6l1.8-1.5-2.2-4.3Z"/></svg>
+          </button>
+          <button class="header-action" type="button" aria-label="Video call" title="Video call (demo)" data-toast="Video calls are not part of this text-chat demo.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="12.5" height="12" rx="2"/><path d="m15.5 10 5-3v10l-5-3"/></svg>
+          </button>
+          <button class="header-action info-action" id="infoButton" type="button" aria-label="Conversation information" title="Conversation information">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10.5v5M12 7.3h.01"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="messages-wrap" id="messagesWrap">
+        <div class="conversation-intro" id="conversationIntro">
+          <div class="large-avatar avatar-store"><span>AC</span><i class="online-dot"></i></div>
+          <h3>ACMS Store</h3>
+          <p>You're testing your ACMS AI assistant in a Messenger-style chat.</p>
+          <span class="profile-pill">AI chat · Local backend</span>
+        </div>
+        <div class="date-divider"><span>MESSAGES</span></div>
+        <div class="message-list" id="messageList" aria-live="polite" aria-relevant="additions text"></div>
+        <div class="typing-row hidden" id="typingRow" aria-label="ACMS is typing">
+          <div class="mini-avatar avatar-store"><span>AC</span></div>
+          <div class="typing-bubble"><i></i><i></i><i></i></div>
+          <span class="typing-label">Typing</span>
+        </div>
+      </div>
+
+      <div class="composer-area">
+        <div class="composer-toolbar">
+          <button class="composer-tool" type="button" aria-label="Attach a file" title="Attach file" data-toast="This endpoint accepts text only. File uploads are not connected.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <button class="composer-tool" type="button" aria-label="Send a photo" title="Photo" data-toast="Photo uploads are not connected. Your /chat endpoint accepts a message string.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9" r="1.6"/><path d="m4 17 5-5 3.5 3 2.5-2 5 4"/></svg>
+          </button>
+          <button class="composer-tool" type="button" aria-label="Choose a sticker" title="Stickers" data-toast="Stickers are visual-only in this mockup.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7.5L20 13.5Z"/><path d="M13.5 20V15a1.5 1.5 0 0 1 1.5-1.5h5M8 9h8M8 12h4"/></svg>
+          </button>
+          <button class="composer-tool" type="button" aria-label="GIF" title="GIF" data-toast="GIF search is not connected in this mockup."><span class="gif-label">GIF</span></button>
+          <button class="composer-tool" id="emojiButton" type="button" aria-label="Add emoji" title="Add emoji"><span class="emoji-face">☺</span></button>
+        </div>
+        <form class="composer" id="messageForm">
+          <label class="message-input-wrap" for="messageInput">
+            <textarea id="messageInput" rows="1" maxlength="4000" placeholder="Message ACMS Store…" aria-label="Type a message"></textarea>
+            <button class="input-emoji" id="inputEmojiButton" type="button" aria-label="Insert smile emoji" title="Insert emoji">☺</button>
+          </label>
+          <button class="send-button" id="sendButton" type="submit" aria-label="Send message" title="Send message" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 20 18-8L3 4l2 7 9 1-9 1-2 7Z"/></svg>
+          </button>
+        </form>
+        <p class="composer-footnote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10V7a6 6 0 0 1 12 0v3M5 10h14v11H5z"/><path d="M12 14v3"/></svg> Messages are sent to your local ACMS backend.</p>
+      </div>
+    </section>
+
+    <aside class="details-panel hidden" id="detailsPanel" aria-label="Conversation details">
+      <div class="details-heading"><h3>Details</h3><button class="round-action" id="closeDetailsButton" type="button" aria-label="Close details">×</button></div>
+      <div class="details-profile"><div class="large-avatar avatar-store"><span>AC</span><i class="online-dot"></i></div><h3 id="detailsName">ACMS Store</h3><p>AI assistant · Local demo</p></div>
+      <div class="details-section"><h4>Conversation info</h4><p>Messages are sent as JSON to <code>POST /chat</code>.</p><p>The API currently receives only the latest message text.</p></div>
+      <div class="details-section"><h4>Backend status</h4><p id="detailsBackendStatus">Not checked yet. Send a message to test the connection.</p></div>
+    </aside>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
